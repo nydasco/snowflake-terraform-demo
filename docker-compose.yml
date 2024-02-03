@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  terraform:
+    image: hashicorp/terraform:0.14.5
+    container_name: terraform-snowflake
+    working_dir: /tf
+    volumes: 
+      - .:/tf
+      - ~/.ssh/snowflake_tf_key.p8:/tf/.ssh/snowflake_tf_key.p8
+    environment:
+      - SNOWFLAKE_USER=APP_USR_TERRAFORM
+      - SNOWFLAKE_ACCOUNT=account
+      - SNOWFLAKE_REGION=ap-southeast-2
+      - SNOWFLAKE_PRIVATE_KEY_PATH=/tf/.ssh/snowflake_tf_key.p8
