@@ -4,9 +4,21 @@
 
 locals {
     app_key_pair = {
-        "APP_USR_DBT" = {
-            display_name = "DBT SERVICE ACCOUNT"
-            login_name = "svc_dbt@domain.com"
+        "APP_USR_DBT_DEV" = {
+            display_name = "DBT DEV SERVICE ACCOUNT"
+            login_name = "svc_dbt_dev@domain.com"
+            rsa_public_key = "MIIBIjjNBA..."
+            disabled = false
+        }
+        "APP_USR_DBT_STG" = {
+            display_name = "DBT STG SERVICE ACCOUNT"
+            login_name = "svc_dbt_stg@domain.com"
+            rsa_public_key = "MIIBIjjNBA..."
+            disabled = false
+        }
+        "APP_USR_DBT_PRD" = {
+            display_name = "DBT PRD SERVICE ACCOUNT"
+            login_name = "svc_dbt_prd@domain.com"
             rsa_public_key = "MIIBIjjNBA..."
             disabled = false
         }

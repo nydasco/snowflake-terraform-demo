@@ -30,6 +30,6 @@ resource "snowflake_grant_privileges_to_role" "warehouse_usage__usr_role_data_en
     role_name  = snowflake_role.team_role["USR_ROLE_DATA_ENGINEER"].id
     on_account_object {
         object_type = "WAREHOUSE"
-        object_name = snowflake_warehouse.warehouse["USAGE_WH"].id
+        object_name = snowflake_warehouse.warehouse["USR_WH_SMALL"].id
     }
 }

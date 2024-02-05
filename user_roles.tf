@@ -16,10 +16,22 @@ locals {
         }
     }
     app_roles = {
-        "SVC_ROLE_DBT" = {
+        "SVC_ROLE_DBT_DEV" = {
             comment = "Some service account should be assigned this role"
             granted_to_users = [
-                "APP_USR_DBT",
+                "APP_USR_DBT_DEV",
+            ]
+        }
+        "SVC_ROLE_DBT_STG" = {
+            comment = "Some service account should be assigned this role"
+            granted_to_users = [
+                "APP_USR_DBT_STG",
+            ]
+        }
+        "SVC_ROLE_DBT_PRD" = {
+            comment = "Some service account should be assigned this role"
+            granted_to_users = [
+                "APP_USR_DBT_PRD",
             ]
         }
     }
@@ -55,7 +67,7 @@ resource "snowflake_role" "app_role" {
 ### GRANT ACCESS TO APPS ###
 resource "snowflake_role_grants" "app_roles_to_apps" {
     provider = snowflake.security_admin
-    for_each = local.lab_roles
+    for_each = local.app_roles
     role_name = each.key
     roles     = ["SECURITYADMIN"]
     users = each.value.granted_to_users
