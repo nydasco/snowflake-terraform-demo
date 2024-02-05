@@ -6,25 +6,23 @@
 locals {
   database_schemas = {
     "RAW" = {
-      database = "${var.db_name}_${var.environment}"
       comment = "contains raw data from our source systems"
     }
     "PRESENTATION" = {
-      database = "${var.db_name}_${var.environment}"
       comment = "contains tables and views accessible to analysts and reporting"
     }
   }
 }
 
 resource "snowflake_database" "database" {
-  name = "${var.db_name}_${var.environment}"
+  name = upper("${var.db_name}_${var.environment}")
   comment = "Example database creation"
 }
 
 resource "snowflake_schema" "database__schema" {
   for_each = local.database_schemas
   name     = each.key
-  database = each.value.database
+  database = upper("${var.db_name}_${var.environment}")
   comment  = each.value.comment
   depends_on = [
     snowflake_database.database

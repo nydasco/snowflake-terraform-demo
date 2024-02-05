@@ -7,7 +7,7 @@
 ### WHAT IS IT CALLED? ###
 resource "snowflake_role" "database__reader" {
     provider = snowflake.security_admin
-    name = "${var.db_name}_${var.environment}__reader"
+    name = upper("${var.db_name}_${var.environment}__reader")
     comment = "This role has full access to read the ${var.db_name}_${var.environment} database incl. all schemas."
 }
 
@@ -15,10 +15,11 @@ resource "snowflake_role" "database__reader" {
 resource "snowflake_role_grants" "database__reader" {
     provider = snowflake.security_admin
     role_name = snowflake_role.database__reader.name
-    roles     = [
+    roles = [
         # Team Roles
-        snowflake_role.team_role["USR_ROLE_DATA_ENGINEER"].id,
+        "USR_ROLE_DATA_ENGINEER",
         # App Roles (note that I'm passing in the environmet so that the dbt dev role has access to the dev database, etc.)
-        snowflake_role.app_role["SVC_ROLE_DBT_${var.environment}"].id,
+        upper("SVC_ROLE_DBT_${var.environment}"),
+        "SECURITYADMIN"
     ]
 }

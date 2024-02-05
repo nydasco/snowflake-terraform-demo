@@ -5,6 +5,9 @@ services:
     image: hashicorp/terraform:0.14.5
     container_name: terraform-snowflake
     working_dir: /tf
+    entrypoint: "sh -c 'terraform init && terraform plan'"
+    #entrypoint: "sh -c 'terraform init && terraform apply -auto-approve'"
+    #entrypoint: "sh -c 'terraform destroy -auto-approve'"
     volumes: 
       - .:/tf
       - ~/.ssh/snowflake_tf_key.p8:/tf/.ssh/snowflake_tf_key.p8

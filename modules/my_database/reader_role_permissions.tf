@@ -3,10 +3,10 @@
 # for the database.
 
 ## Access Database
-resource "snowflake_grant_privileges_to_role" "database__reader__database_usage" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__database_usage" {
     provider = snowflake.security_admin
     privileges = ["USAGE"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_account_object {
       object_type = "DATABASE"
       object_name = snowflake_database.database.name
@@ -14,29 +14,29 @@ resource "snowflake_grant_privileges_to_role" "database__reader__database_usage"
 }
 
 ## Access all current and future schemas
-resource "snowflake_grant_privileges_to_role" "database__reader__all_schema_usage" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__all_schema_usage" {
     provider = snowflake.security_admin
     privileges = ["USAGE"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_schema {
       all_schemas_in_database = snowflake_database.database.name
     }
 }
 
-resource "snowflake_grant_privileges_to_role" "database__reader__future_schema_usage" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__future_schema_usage" {
     provider = snowflake.security_admin
     privileges = ["USAGE"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_schema {
       future_schemas_in_database = snowflake_database.database.name
     }
 }
 
 ## Access all current and future tables and views
-resource "snowflake_grant_privileges_to_role" "database__reader__select_all_tables" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__select_all_tables" {
     provider = snowflake.security_admin
     privileges = ["SELECT"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_schema_object {
       all {
         object_type_plural = "TABLES"
@@ -45,10 +45,10 @@ resource "snowflake_grant_privileges_to_role" "database__reader__select_all_tabl
     }
 }
 
-resource "snowflake_grant_privileges_to_role" "database__reader__select_future_tables" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__select_future_tables" {
     provider = snowflake.security_admin
     privileges = ["SELECT"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_schema_object {
       future {
         object_type_plural = "TABLES"
@@ -57,10 +57,10 @@ resource "snowflake_grant_privileges_to_role" "database__reader__select_future_t
     }
 }
 
-resource "snowflake_grant_privileges_to_role" "database__reader__select_all_views" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__select_all_views" {
     provider = snowflake.security_admin
     privileges = ["SELECT"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_schema_object {
       all {
         object_type_plural = "VIEWS"
@@ -69,10 +69,10 @@ resource "snowflake_grant_privileges_to_role" "database__reader__select_all_view
     }
 }
 
-resource "snowflake_grant_privileges_to_role" "database__reader__select_future_views" {
+resource "snowflake_grant_privileges_to_account_role" "database__reader__select_future_views" {
     provider = snowflake.security_admin
     privileges = ["SELECT"]
-    role_name  = snowflake_role.database__reader.name
+    account_role_name  = snowflake_role.database__reader.name
     on_schema_object {
       future {
         object_type_plural = "VIEWS"

@@ -27,7 +27,7 @@ locals {
     }
 }
 
-resource "snowflake_user" "user_sso" {
+resource "snowflake_user" "users_sso" {
     provider = snowflake.security_admin
     for_each = local.users_sso
     name = each.key

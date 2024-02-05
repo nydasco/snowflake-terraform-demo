@@ -8,6 +8,6 @@ variable "db_name" {
 
 variable "environment" {
     type = string
-    description = "Environment that the database exists in - dev/tst/prd - that will be appended to the database name"
+    description = "Environment that the database exists in - dev/stg/prd - that will be appended to the database name"
     default = "dev"
 }
