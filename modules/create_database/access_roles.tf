@@ -1,10 +1,11 @@
-### HERE WE CREATE THE ACCESS ROLES, AND WHICH TEAM ROLE CAN ACCESS THOSE ROLES ###
-# Importantly each resource must be uniquely named, so we have prefixed the
-# role - reader - with the name of the database (passed from the environment variable) 
-# to ensure uniqueness. If you were securing at the schema level, you would need to 
-# prefix with the database name and schema name.
+/*
+This file creates the roles for the database. The roles are used to manage the access to the database.
+The roles are created with the following privileges:
+- READER: Read access to the database
+- WRITER: Write access to the database
+The actual permissions for these are defined in `reader_role.tf` and `writer_role.tf`.
+*/
 
-### WHAT IS IT CALLED? ###
 resource "snowflake_role" "database__reader" {
     provider = snowflake.security_admin
     name = upper("${var.db_name}__reader")

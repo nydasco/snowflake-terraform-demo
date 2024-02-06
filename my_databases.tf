@@ -1,4 +1,11 @@
-### DEVELOPMENT ###
+/*
+ This Terraform file leverages the `create_database` module to create three databases: DEV, STG, and PRD.
+ As part of this, we define the database names, and also the schemas that should be created within each database.
+
+ We then define the roles that should have access to each database, and have provided Data Engineers with read access
+ and the service accounts with both read and write access. While the engineers have access to all environments, the 
+ service accounts only have access to their respective databases.
+*/
 
 # create the database
 module "my_database_dev" {

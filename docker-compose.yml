@@ -1,3 +1,10 @@
+# This docker-compose file can be run to execute terraform commands in a container
+# While the entry point can be passed in as a parameter, I've provided three examples:
+# 1. terraform plan which checks that everything should execute correctly
+# 2. terraform apply -auto-approve which will execute the terraform script
+# 3. terraform destroy -auto-approve which will remove all resources created by the terraform script
+# You will need to alter the path to your private key, and the details of the environment variables to suit your snowflake account
+
 version: '3.9'
 
 services:
@@ -13,6 +20,5 @@ services:
       - ~/.ssh/snowflake_tf_key.p8:/tf/.ssh/snowflake_tf_key.p8
     environment:
       - SNOWFLAKE_USER=APP_USR_TERRAFORM
-      - SNOWFLAKE_ACCOUNT=account
-      - SNOWFLAKE_REGION=ap-southeast-2
+      - SNOWFLAKE_ACCOUNT=<YOUR_ACCOUNT>.ap-southeast-2
       - SNOWFLAKE_PRIVATE_KEY_PATH=/tf/.ssh/snowflake_tf_key.p8

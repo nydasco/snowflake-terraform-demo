@@ -1,8 +1,8 @@
-### WAREHOUSE MANAGEMENT ###
-# Here we define a set of warehouses, and then the resource will 
-# iterate through them. Then we can assign the warehouse to the role that needs it.
+/*
+ Here we define a set of warehouses, and then the resource will iterate through them. Then we can assign the warehouse 
+ to the role that needs it.
+*/
 
-### CREATE THE WAREHOUSES ###
 locals {
     warehouses = {
         "USR_WH_SMALL" = {
@@ -22,8 +22,6 @@ resource "snowflake_warehouse" "warehouse" {
 }
 
 ### ALLOW USAGE OF THE WAREHOUSES ###
-
-### USR_ROLE_DATA_ENGINEER ###
 resource "snowflake_grant_privileges_to_account_role" "warehouse_usage__usr_role_data_engineer__usr_wh_small" {
     provider = snowflake.security_admin
     privileges = ["USAGE"]

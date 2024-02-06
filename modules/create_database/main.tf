@@ -1,7 +1,6 @@
-### MAIN FILE THAT SHOULDN'T NEED TO BE ALTERED ###
-# Best practice is not to manage Snowflake with the ACCOUNT ADMIN role
-# but instead to use the SYSADMIN role and then leverage the SECURITYADMIN
-# role where necessary.
+/*
+ Each module needs the configuration added to it.
+*/
 
 terraform {
   required_version = "= 1.7.0"
@@ -13,9 +12,6 @@ terraform {
     }
   }
 }
-
-# SYSADMIN role has the ability to create databases, schemas & warehouses. This is the default.
-# SECURITYADMIN role has the ability to create users, roles & grant privileges. 
 
 provider "snowflake" {
   role = "SYSADMIN"

@@ -1,4 +1,7 @@
-# A variable block, which contains the variables we'll pass into the module.
+/*
+ A variable block allows us to define the structure of variables that we'll pass into the module.
+ In this case it's the name of the database, and a map of schema names and their comments.
+*/
 
 variable "db_name" {
     type = string

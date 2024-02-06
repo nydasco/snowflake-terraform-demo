@@ -1,11 +1,13 @@
-### USER MANAGEMENT ###
-# Use this to create users within Snowflake. No permissions have been assigned
-# and the assumption is that the users will log in using SSO. For login with 
-# key pair, see apps.tf. For access with password, simply add a 'password = xyz'
-# section to each user, and a 'password = each.value.password' to the resource.
-# If using passwords, it would be best practice to also ensure the option to change
-# password on first login was set. Remember, putting passwords in here isn't great! 
+/* 
+ This file is used to create and manage users. A map allows for each user to be defined with a set of attributes. 
+ The snowflake_user resource is then used to create the users in Snowflake.
+ Use this to create users within Snowflake. No permissions have been assigned and the assumption is that the users 
+ will log in using SSO. For login with key pair, see apps.tf. For access with password, simply add a 'password = xyz' 
+ section to each user, and a 'password = each.value.password' to the resource.
 
+ If using passwords, it would be best practice to also ensure the option to change password on first login was set. 
+ Remember, putting passwords in here isn't great! 
+*/
 locals {
     users_sso = {
         "USR_LASTNAME_FIRSTNAME" = {

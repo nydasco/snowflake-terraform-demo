@@ -1,7 +1,14 @@
-### SERVICE ACCOUNTS SHOULD BE MANAGED HERE ###
-# I've assumed that service accounts would use public/private key pairs.
-# Accounts can be managed in the locals block, and then the Terraform resource will iterate through them.
+/*
+    This Terraform code defines a local variable called "app_key_pair" which is a map of application service accounts.
+    Each account consists of a unique identifier and a set of attributes including display name, login name, RSA public key, 
+    and disabled status.
 
+    The code also creates a Snowflake user resource using the "snowflake_user" provider. It iterates over the "app_key_pair"
+    map using the "for_each" argument, creating a Snowflake user for each key pair. The Snowflake user is configured with 
+    the provided attributes such as name, display name, login name, RSA public key, and disabled status.
+
+    Three application service accounts are provided to get started - a dbt service account for each environment (DEV, STG, PRD).
+*/
 locals {
     app_key_pair = {
         "APP_USR_DBT_DEV" = {

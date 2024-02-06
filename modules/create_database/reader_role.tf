@@ -1,6 +1,6 @@
-### A FILE LIKE THIS WILL EXIST FOR EACH ROLE THAT IS DEFINED IN THE ROLES.TF FILE ###
-# The purpose of this file is to set the access permissions for each of the roles defined
-# for the database.
+/*
+ This file defines the permissions of the reader role for the database.
+*/
 
 ## Access Database
 resource "snowflake_grant_privileges_to_account_role" "database__reader__database_usage" {

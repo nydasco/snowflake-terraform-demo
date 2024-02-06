@@ -1,11 +1,11 @@
-### CREATE THE DATABASE AND SCHEMAS ###
-# The variables are passed into this Terraform file, including the database name
-# and the environment. Here we simply need to copy/paste down the 4 line code blocks
-# for the schemas that exist within the database, and change the name and comments.
+/*
+  This file is used to create a database and schemas within Snowflake. 
+  The database name and schema names are passed in as variables from the 
+  main Terraform file. 
+*/
 
 resource "snowflake_database" "database" {
   name = upper("${var.db_name}")
-  comment = "Example database creation"
 }
 
 resource "snowflake_schema" "database__schema" {
