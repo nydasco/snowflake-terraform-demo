@@ -39,3 +39,5 @@ To clean things up, comment line 16 out again, and uncomment line 17. This will 
 > **Note:** Terraform creates a tfstate file. In this repo, it will create it in the main folder. If you want to deploy this in production, you should look at having it save to a secure S3 bucket or similar.
 
 Good luck with you IaC adventures!
+
+> **Note:** There are lots of ways to set up Terraform. This is just one way. The aim of this repo is to give you an idea of its use. Not to be prescriptive in the way you or your company should choose to use it.
