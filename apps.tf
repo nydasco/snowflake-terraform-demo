@@ -8,6 +8,9 @@
     the provided attributes such as name, display name, login name, RSA public key, and disabled status.
 
     Three application service accounts are provided to get started - a dbt service account for each environment (DEV, STG, PRD).
+
+		Note that the rsa_public_key lines have been commented out. Terraform will fail if the keys are invalid. Running this 'as is'
+		will build, but the service accounts won't have key/pair or password authentication. You won't be able to use them.
 */
 locals {
     app_key_pair = {
